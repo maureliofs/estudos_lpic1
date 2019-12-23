@@ -6,14 +6,14 @@ Anotações e estudos para certificação LPIC-1 baseado no **[curso](https://ww
 
 ## Sumário
 
-###### 101-500
+### 101-500
 
 1. Arquitetura do Sistema
 2. Instalação do Linux e Gerenciamento de Pacotes
 3. [Comandos GNU e Unix](capitulos/comandos.md)
 4. Dispositivos, Sistemas de Arquivos Linux e FHS
 
-###### 102-500
+### 102-500
 
 5. Shells e Shell Scripting
 6. Interfaces de Usuários e Desktops
