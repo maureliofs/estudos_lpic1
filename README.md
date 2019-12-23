@@ -1,6 +1,6 @@
 # Anotações LPIC-1
 
-Anotações e estudos para certificação LPIC-1 baseado no **[curso](https://www.udemy.com/course/curso-online-certificacao-linux-lpic1-comptia/)**
+Anotações e estudos para certificação LPIC-1 baseado no **[curso](https://www.udemy.com/course/curso-online-certificacao-linux-lpic1-comptia/)** do instrutor Ricardo Prudenciato.
 
 > Autor: **[Marco Aurélio Ferreira de Sousa](https://github.com/maureliofs)**
 
