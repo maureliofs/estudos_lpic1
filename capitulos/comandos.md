@@ -183,28 +183,33 @@ ao brancas numeradas
 -s - quando tem mais de uma linha em branco(enter) ele transforma
 em um só enter.
 -A - mostra caracteres especiais, fim de linha, tab, etc
-
+```
+```shell
 $ tac nomeArquivo.txt - imprime o conteúdo do arquivo os contrário
-
+```
+```shell
 $ head nomeArquivo.txt - mostra as primeiras 10 linhas de um arquivo
 -n - mostra um número especı́fico de linhas. Ex. -n2 ou -2 mostra as
 duas primeira linhas.
 -c - mostra os primeiros bytes. Ex. -c50 mostra os 50 primeiros bytes
-
+```
+```shell
 $ tail nomeArquivo.txt - mostra as últimas 10 linhas de um arquivo
 -n - mostra um número especı́fico de linhas. Ex. -n2 ou -2 mostra as duas
 últimas linhas.
 -c - mostra os primeiros bytes. Ex. -c50 mostra os 50 primeiros bytes
 -f - mostra o conteúdo do arquivo e atualiza em tempo real caso o arquivo
 seja modificado. Muito usado para monitorar arquivos de log.
-
+```
+```shell
 $ less nomeArquivo.txt - mostra o conteúdo do arquivo paginado.
 seta para baixo e enter - se move entre as linhas
 espaço - se move por página
 /String - procure pela string especifica. apertando n busca a próxima ocorrência da string e N mostra a anterior.
 Ctrl + G - mostra o status do arquivo, nome, tamanho, etc
 q - sai do less
-
+```
+```shell
 $ wc nomeArquivo.txt - mostra informaç~
 oes sobre um determinado arquivo.
 Em ordem, qtde de linhas, qtde de palavras, qtde de bytes e nome do arquivo
@@ -214,10 +219,11 @@ Em ordem, qtde de linhas, qtde de palavras, qtde de bytes e nome do arquivo
 -m ou --chars - mostra somente a qtde de caracteres
 wc * - mostra as informações de todos os arquivos no diretório e o total
 de todas as informações.
-
-$ nl nomeArquivo.txt - mostra as linhas n~
-ao brancas numeradas, igual o cat -b
-
+```
+```shell
+$ nl nomeArquivo.txt - mostra as linhas não brancas numeradas, igual o cat -b
+```
+```shell
 $ sort nomeArquivo.txt - mostra o arquivo ordenado em ordem crescente
 -r - mostra de forma reversa
 ```
@@ -225,27 +231,35 @@ $ sort nomeArquivo.txt - mostra o arquivo ordenado em ordem crescente
 ## 103.2 Aplicando filtros a textos e arquivos - uniq, od, paste, split
 
 ```shell
-$ uniq - Mostra apenas uma vez cada palavra em um arquivo [caso tenha repetições] só mostra se tiver uma linha após a outra
+$ uniq - Mostra apenas uma vez cada palavra em um arquivo 
+[caso tenha repetições] só mostra se tiver uma linha após a outra
+```
 
+```shell
 $ sort arquivo.txt | uniq : Para retirar todas as ocorrências
 -d - mostra somente as linhas que estão duplicadas
 -c - mostra o numero de ocorrências repetidas de cada linha
-
+```
+```shell
 $ od - [octal dump]mostra o conteúdo de um arquivo em formato octal
 -tx - mostra em hexadeciamal
-
+```
+```shell
 $ join - combina 2 arquivos através de um ı́ndice
 ex.: join arq1.txt arq2.txt
 -j2 - ordena de acordo com a segunda coluna por ex.
-
+```
+```shell
 $ paste - combina as respectivas linhas de varios arquivos e mostra na tela.
 ex.: paste arq1.txt arq2.txt
-
+```
+```shell
 $ split - divide o arquivo em vários
 -l - divide em numero de linhas
 ex.: -l20 ou -20 - divide em varios arquivos de 20 linhas
 -b - divide em bytes
-
+```
+```shell
 $ tr substitui caracteres em um texto, deve ser usado em conjunto com o |
 ou por redirecionamento de entrada.
 ex.: $ cat alunos.txt | tr a-z A-Z # transforma tudo de a até z minusculo em A até Z maiusculo
@@ -253,7 +267,8 @@ ex.: $ cat alunos.txt | tr a-z A-Z # transforma tudo de a até z minusculo em A 
 ametro
 ex.: $ cat alunos.txt | tr -d A #apaga todos os A
 $ cat alunos.txt | tr -d [:blank:] #apaga todos os espaços em branco
-
+```
+```shell
 $ cut - recortar partes de texto
 -c - recortar por caractere
 ex.: cut -c1-5 alunos.txt #mostra os caracteres de 1 a 5 de cada linha
@@ -263,7 +278,8 @@ cut -c3- alunos.txt #mostra os caracteres de 3 pra frente
 -d - delimitador
 -f - campos, usado em conjunto com o -d
 ex.: cut -d" " -f1 alunos.txt # mostra o campo 1 usando como delimitador de campo um espaço.
-
+```
+```shell
 $ sed - procurar um conteúdo e substituir ou deletar partes do texto
 ex.: $ sed 's/Silva/Sousa' alunos.txt # s para substituir a primeira
 # ocorrência de Silva por Sousa, para substituir todas as ocorrências
