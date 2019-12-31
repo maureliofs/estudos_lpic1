@@ -655,4 +655,4 @@ find /var -type d -name "*config*" | xargs ls -ld > diretorio-config.out
 ls -l ~/LPI1/Exercicios/Network | tee lista-network.out
 ```
 
-## 1035.5 Criar, Monitorar e Encerrar Processos - processos, ps, pstree, pgrep
+## 103.5 Criar, Monitorar e Encerrar Processos - processos, ps, pstree, pgrep
