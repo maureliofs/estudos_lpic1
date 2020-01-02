@@ -18,7 +18,7 @@ Anotações e estudos para certificação LPIC-1 baseado no **[curso](https://ww
    * [103.5 Criar, Monitorar e Encerrar Processos](capitulos/103/103_5.md)
    * [103.6 Modificar a Prioridade de Execução de Processos](capitulos/103/103_6.md)
    * [103.7 Pesquisar em Arquivos de Texto com Expressões Regulares](capitulos/103/103_7.md)
-   * [103.8 Edição Básica de Arquivos](capitulos/103/103_18.md)
+   * [103.8 Edição Básica de Arquivos](capitulos/103/103_8.md)
 * Tópico 104 - Dispositivos, Sistemas de Arquivos Linux e FHS
 
 ### 102-500
