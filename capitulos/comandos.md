@@ -656,3 +656,280 @@ ls -l ~/LPI1/Exercicios/Network | tee lista-network.out
 ```
 
 ## 103.5 Criar, Monitorar e Encerrar Processos - processos, ps, pstree, pgrep
+
+PID = Process ID
+PPID = Parent Process ID
+Primeiro processo iniciado no Linux é o init/systemd e tem PID = 1.
+
+Comando `ps` mostra os processos tem execução.
+
+Quando usado sem nenhum parâmetro - somente `ps` - mostra os processos em execução do usuário no próprio terminal.
+
+```shell
+-u : (userlist) mostra mais informações relevantes para o usuário, como nome do usuário dono, %CPU, %MEM, status, hora que foi iniciado, tempo de CPU que o processo usou.
+-x : mostra processos que não foram iniciados no próprio terminal.
+-a : mostra os processos de todos os usuários.
+-f : mostra a hierarquia e herança de processos
+-l : mostra outras informações, como por exemplo o UID do usuário dono do processo ao invés do nome, entre outros.
+```
+
+O `ps` aceita parâmetros passando o `-` ou não, sendo que em alguns casos a saída é diferente para as duas formas.
+
+O comando `pstree` mostra os processos no formato de árvore na hierarquia de execução.
+
+```shell
+-p : mostra o ID do processo
+``` 
+
+O comando `pgrep` mostra os ID's dos processos de acordo  com o parâmetro passado, por exemplo: 
+
+```shell
+pgrep bash : É mostrado todos os ID's de todos os usuários dos processos que tem o nome bash.
+-u : especifica o usuário. ex.: pgrep bash -u root
+```
+
+## 103.5 Criar, Monitorar e Encerrar Processos - top
+
+O comando `top` mostra os processos em execução de forma interativa.
+
+o `load average` mostra a média de processos em execução e caso o valor seja maior que o numero de CPU's mostra os processo que estão em fila de execução em três intervalos de tempo, no último minuto, últimos 5 minutos e últimos 15 minutos. 
+
+Dentro do `top` podemos usar alguns comandos para interagir e mudar a forma com que os processo são apresentados.
+
+```shell
+shift + m : ordena em ordem decrescente pelo consumo de memória.
+shift + p : ordena em ordem decrescente pelo consumo de cpu.
+u : abre uma caixa onde você pode digitar o nome de um usuário específico.
+n : limita o número de processos a um número informado.
+k : mata o processo pelo PID informado.
+f : selecionar novas opções, pressionar d pra adicionar e esc para voltar
+? ou h : mostra a lista de comandos.
+q : sai do top.
+```
+
+O `top` ainda possui alguns parâmetros.
+```shell
+-b : joga a saída na tela (modo não interativo).
+-d : delimita o delay de atualização. ex.: -d3 (3 segundos)
+-n :limita o número de atualizações a ser mostrado. ex.: -n2 (duas vezes)
+```
+## 103.5 Criar, Monitorar e Encerrar Processos - kill, killall, pkill
+
+O comando `kill` é usado para enviar um sinal a um processo.
+
+```shell
+kill -l : mostra a lista de todos os sinais que podem ser enviado.
+```
+
+Os principais estão definidos na tabela abaixo:
+
+Sinal   |   Código  | Uso
+--------|-----------|----
+SIGHUP  |1          |Termina ou reinicia um processo. Utilizado também para que arquivos de configuração de um programa sejam relidos. 
+SIGINT  |2          |Interrompe a execução de um processo. Relacionado ao Ctrl+C. 
+SIGQUIT |3          |Termina um processo e normalmente gera um arquivo de dump.
+SIGKILL |9          | Finaliza um processo de maneira imediata e incondicional (único sinal que não pode ser evitado por um processo).
+SIGTERM |15         | O sinal solicita que o processo se finalize. **Sinal padrão do comando kill**.
+SIGSTP  |20         | Interrompe um processo permitindo que ele possa ser retomado. Relacionado ao Ctrl+Z.
+SIGCONT |18         | Continua a execução de um processo pausado (pelo sinal 20 por exemplo). 
+
+```shell
+kill id_process : envia o sinal 15 para o processo
+-s : especifica o sinal a ser enviado, podendo ser pelo nome, SIGKILL, por exemplo, ou pelo número, 9. 
+O parâmetro -s geralmente é omitido e usa-se somente -9, neste caso.
+```
+
+O comando `killall` mata todos os processos pelo nome. 
+
+```shell
+killall firefox
+```
+
+Um usuário comundo só consegue matar os processos que pertecem a ele mesmo. Somente o root consegue matar todos os processos de todos os usuários.
+
+O comando `pkill` é semelhante ao comando `killall`, mas nesse caso você pode especificar o sinal desejado e o usuário dono do processo, por exemplo:
+```shell
+pkill -9 firefox -u marco
+```
+
+## 103.5 Criar, Monitorar e Encerrar Processos - uptime, free, screen
+
+O comando `uptime` mostra algumas informações relevantes a respeito do sistema, como hora, tempo que a máquina está ligada, número de usuários estão logados e load average.
+
+```shell
+uptime
+```
+
+O comando `free` mostra a quantidade de memória e swap utilizada pelo sistema. Sem nenhum parâmetro mostra a quantidade de memória em KB.
+
+```shell
+-m : exibe a memória em MB.
+-g : exibe a memória em GB.
+-h : exibe a memória com unidade de medida de acordo com o tamanho.
+```
+
+O comando `screen` é usado para criar diversas abas dentro de uma mesma seção do shell. Ao abrir o `screen` basta teclar enter. O comando `ctrl + a` é o comando padrão do `screen` para interação. 
+
+```shell
+ctrl + a + c : (create) abre uma nova aba.
+ctlr + a + n : (next) transita entre as abas abertas.
+ctrl + a + d : (detached) sai do screen.
+screen -ls : mostra as seções do screen
+screen -r : retorna para o screen.
+Digitando exit dentro do screen, fecha a aba atual.
+```
+
+## 103.5 Criar, Monitorar e Encerrar Processos - jobs, bg, fg, nohup
+
+Um processo em **foreground** ocorre quando chamamos algum programa pelo terminal, esse programa fica "preso" a esse terminal e enquanto este processo não encerrar, não conseguimos usá-lo. Para que isso não ocorra podemos executar o processo em **background** usando na frente o símbolo **&**. Ex.:
+
+```shell
+firefox &
+```
+
+Ao usar o **&** o shell  cria um `job` para esta execução e nos retorna o ID do `job` e o `PID` do processo. Usando o comando `jobs` podemos ver todos estes `jobs`em execução.
+
+```shell
+jobs -l : mostra também o PID do processo.
+```
+
+Para colocar um processo que já está rodando em foreground em background, basta pressionar `ctrl + z`, nisso o shell irá mandar um sinal de stop para o processo e com isso basta digitar `bg` que o processo será posto em background e executando.
+
+Caso queira colocar o processo de background de volta em foreground, basta digitar `fg`.
+
+Os comando `bg` e `fg` sem nenhum parâmetro irá manipular somente o último job. Caso queira controlar um job específico, basta informar o ID do job como parâmetro para o comando. Por exemplo:
+
+```shell
+bg 2
+fg 1
+```
+
+O comando `nohup` é usado para proteger um processo de um SIGHUP, muito usado em conexões ssh quando o administrador coloca algum processo para executar, pois se ele perder a conexão ssh, estes processos podem ser encerrados. Além disso ele redireciona toda a saída do processo (caso tenha) para um arquivo chamado `nohup.out`, evitando assim jogar na tela do usuário.
+
+## 103.5 Criar, Monitorar e Encerrar Processos - watch, tmux
+
+O comando `watch` é usado para executar um programa de tempos em tempos (padrão 2s) e mostrando a saída na tela do usuário. Caso seja um comando grande, por exemplo `ps aux | grep firefox`, deve-se informar entre aspas. No exemplo abaixo ele irá executar um `free -h` de 2 em 2 segundos.
+
+```shell
+watch free -h
+-n : muda o tempo de atualização. Ex.: -n1 - atualiza de 1 em 1 segundo.
+```
+
+O `tmux` é uma ferramenta usada para controlar diversos terminais em uma seção.
+Dentro do `tmux` sempre que vamos informar um comando, este deve ser precedido de `ctrl + b`.
+
+`ctrl + b` `c` : cria uma nova janela.
+`ctrl + b` `,` : renomear a janela atual.
+`ctrl + b` `p` : volta pra janela anterior.
+`ctrl + b` `n` : vai pra próxima janela.
+`ctrl + b` `l` : vai pra última janela que estava.
+`ctrl + b` `number` : navegar entre as janelas pelo ID.
+`ctrl + b` `w` : mostra as janelas em forma de lista.
+
+`ctrl + b` `%` : abre um painel ao lado referente a mesma janela, só que de forma independente.
+`ctrl + b` `"` : abre um painel abaixo referente a mesma janela, só que de forma independente.
+`ctrl + b` `setas` : navega entre os painéis.
+`ctrl + b + setas` : redimensiona a janela atual.
+`ctrl + b` `o` : rotaciona entre as janelas.
+`ctrl + b` `d` : sai do tmux
+
+`tmux ls` : lista as seções do tmux
+`tmux attach -t 0`  : volta pra seção 0 do tmux por exemplo.
+`temux new -s connection` : cria uma nova conexão. -s para dar um nome a conexão, no caso o nome connection. Se usar somente `tmux new` ele vai incrementando o ID da seção.
+
+`ctrl + b` `&` : mata a janela do tmux.
+Caso esteja fora do tmux, pode se usar `tmux kill-session -t id`
+
+### 103.4 Exercícios
+
+15. Preencha as informações abaixo com os dados de sua instância Linux:
+* Total de Memória RAM utilizada (em MB): `free -m : 3431`
+* Load Average (Média dos Últimos 5 minutos): `uptime (segundo valor) : 1,31`
+* Quantidade de Processos em Execução: `top (tasks) : 292`
+* PID dos 3 processos que estão utilizando mais Memória: `top / shift + m / n 3 : 4480, 2056 e 3047`
+* PPID (Parent Process ID) dos 3 processos com maior tempo de Uso de CPU: `top / t / f adiciona PPID / n 3 : 6021, 5737 e 5737` 
+
+16. Crie um comando, que gere um arquivo chamado ~/LPI1/Exercicios/resultado-top.out, que contenha a saída do comando  top, atualizado a cada 10 segundos, sendo executado indefinidamente até  que o processo seja morto. O comando deve rodar em background.
+
+```shell
+top -b -d10 > ~/LPI1/Exercicios/resultado-top.out &
+```
+
+17. Envie um sinal de SIGKILL para o processo iniciado no exercício 16.
+
+```shell
+kill -9 <PID>
+```
+
+## 103.6 Modificar a Prioridade de Execução de Processos - nice, renice
+
+Internamente o Linux possui um algoritmo de gerenciamento de prioridade dos processos. Para ver essa prioridade podemos usar o comando `top` e olhar as colunas `PR` (priority) e `NI` (nice), o `PR` é um número interno que o Linux indica qual a prioridade do processo naquele momento. o `NI` é a propriedade que permite que o administrador do sistema possa alterar essa prioridade. Para alterar esta prioridade usamos os comando `nice` e `renice`. 
+
+`nice` é usado para definir a prioridade dele ao iniciar o processo.
+`renice` é usado para alterar a prioridade depois que ele está em execução.
+
+Os valores de `nice` vão do -20 ao +19. Quando **menor** o valor, **maior** é a prioridade. Todos os processos são iniciados com `nice` = 0, e somente o root pode aumentar a prioridade dos processos (valores negativos, no caso), um usuário comum pode apenas diminuir a prioridade do processo.
+
+Uso do comando `nice`:
+
+Prioridade mais baixa que o normal:
+
+```shell
+nice -n 15 firefox & OU nice -15 firefox &
+#Define a prioridade do firefox para 15
+```
+
+Prioridade mais alta que o normal:
+
+```shell
+nice -n -15 firefox & OU nice --15 firefox &
+#Define a prioridade do firefox para -15
+```
+
+Caso não seja usado o parâmetro -n para especificar o valor do `nice` ele inicia o processo com valor 10.
+
+Uso do comando `renice`:
+
+```shell
+renice -n 8 <PID> OU renice 8 <PID>
+#modifica o nice do processo passado para 8
+```
+
+```shell
+renice -n -10 <PID> OU renice -10 <PID>
+#modifica o nice do processo passado para -10
+```
+
+Podemos ainda usar o `renice` para modificar o nice de todos os processos de um usuário ou de um grupo.
+
+```shell
+renice -n 5 -u mrc
+#modifica o nice de todos os processos do usuário mrc para 5
+```
+
+```shell
+renice -n 5 -g adm
+#modifica o nice de todos os processos do grupo adm para 5
+```
+
+### 103.6 - Exercícios
+
+18. Inicie o mesmo comando aplicado no exercício 16, porém com a menor prioridade possível.
+
+```shell
+nice -n 19 top -b -d10 > ~/LPI1/Exercicios/resultado-top.out &
+                            OU
+nice -19 top -b -d10 > ~/LPI1/Exercicios/resultado-top.out &
+
+```
+
+19. Altere o NICE do processo "rsyslogd" para o valor -10.
+
+```shell
+#Logado como root
+renice -n -10 $(pgrep rsyslogd)
+            OU
+renice -10 `pgrep rsyslogd`
+```
+
+## Pesquisar em Arquivos de Texto com Expressões Regulares - grep, intro regex
