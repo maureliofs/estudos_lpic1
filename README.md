@@ -9,6 +9,9 @@ Anotações e estudos para certificação LPIC-1 baseado no **[curso](https://ww
 ### 101-500
 
 * Tópico 101 - Arquitetura do Sistema
+   * 101.1 [Identificar e Configurar o Hardware](capitulos/101/101_1.md)
+   * 101.2 [O Processo de Boot](capitulos/101/101_2.md)
+   * 101.3 [Alterar os RunLevels, Shutdown e Reboot](capitulos/101/101_3.md)
 * Tópico 102 - Instalação do Linux e Gerenciamento de Pacotes
 * Tópico 103 - Comandos GNU e Unix
    * [103.1 Trabalhando na Linha de Comando](capitulos/103/103_1.md)
