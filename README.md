@@ -19,7 +19,6 @@ Anotações e estudos para certificação LPIC-1 baseado no **[curso](https://ww
   * [102.4 Gerenciamento de Pacotes Debian](capitulos/102/102_4.md)
   * [102.5 Gerenciamento de Pacotes RPM e YUM](capitulos/102/102_5.md)
   * [102.6 Linux e Virtualização](capitulos/102/102_6.md)
-
 * Tópico 103 - Comandos GNU e Unix
   * [103.1 Trabalhando na Linha de Comando](capitulos/103/103_1.md)
   * [103.2 Aplicando Filtros a Textos e Arquivos](capitulos/103/103_2.md)
