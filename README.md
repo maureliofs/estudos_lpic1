@@ -32,9 +32,9 @@ Anotações e estudos para certificação LPIC-1 baseado no **[curso](https://ww
   * [104.1 Criando Partições e Sistemas de Arquivos](capitulos/104/104_1.md)
   * [104.2 Mantendo a Integridade de FSs](capitulos/104/104_2.md)
   * [104.3 Controle de Montagem e Desmontagem de FSs](capitulos/104/104_3.md)
-  * [104.4 Gerenciando Permissões e Propriedades de Arquivos](capitulos/104/104_4.md) 
-  * [104.5 Criando e Alterando Links Hard e Soft](capitulos/104/104_5.md)
-  * [104.6 Padrão e Comandos para Localização de Arquivos](capitulos/104/104_6.md)
+  * [104.5 Gerenciando Permissões e Propriedades de Arquivos](capitulos/104/104_4.md) 
+  * [104.6 Criando e Alterando Links Hard e Soft](capitulos/104/104_5.md)
+  * [104.7 Padrão e Comandos para Localização de Arquivos](capitulos/104/104_6.md)
 
 ### 102-500
 
